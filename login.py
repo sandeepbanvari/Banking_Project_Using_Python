@@ -15,7 +15,7 @@ class Login(Bank):
 
     def operation(self):
 
-        print("Login Operation")
+        print("\n========== Login ==========")
 
     # ---------- Login ----------
 
@@ -36,18 +36,30 @@ class Login(Bank):
 
                 found = True
 
-                print("Login Successful")
+                print("\n======================================")
+                print(f"✅ Login Successful!")
+                print(f"👋 Welcome, {user.get_name()}")
+                print("======================================")
 
                 while True:
 
                     print("""
-1. Deposit
-2. Withdraw
-3. Balance
-4. Logout
+======================================
+            BANK MENU
+======================================
+1. 💰 Deposit
+2. 💸 Withdraw
+3. 🏦 Check Balance
+4. 🚪 Logout
+======================================
 """)
 
-                    option = int(input("Enter Your Choice : "))
+                    try:
+                        option = int(input("👉 Enter Your Choice : "))
+
+                    except Exception as msg:
+                        print(f"\n❌ Invalid Input: {msg}")
+                        continue
 
                     match option:
 
@@ -97,15 +109,18 @@ class Login(Bank):
 
                         case 4:
 
-                            print("Logout Successful")
+                            print("\n🚪 Logout Successful.")
+                            print("🙏 Thank you for banking with us!")
                             break
 
                         case _:
 
-                            print("Invalid Choice")
+                            print("\n❌ Invalid Choice.")
+                            print("Please select an option between 1 and 4.")
 
                 break
 
         if found == False:
 
-            print("Invalid Username or Password")
+            print("\n❌ Invalid Username or Password.")
+            print("Please check your credentials and try again.")

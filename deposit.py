@@ -4,14 +4,12 @@ from bank import Bank
 class Deposit(Bank):
 
     def __init__(self):
-
         self.amount = 0
 
     # ---------- Polymorphism ----------
 
     def operation(self):
-
-        print("Deposit Operation")
+        print("\n========== Deposit Operation ==========")
 
     # ---------- Deposit ----------
 
@@ -20,17 +18,14 @@ class Deposit(Bank):
         self.operation()
 
         try:
-
-            self.amount = int(input("Enter Deposit Amount : "))
+            self.amount = int(input("Enter Deposit Amount (₹): "))
 
         except Exception as msg:
-
-            print(msg)
+            print("❌ Invalid input.", msg)
             return False
 
         if self.amount <= 0:
-
-            print("Invalid Amount")
+            print("❌ Deposit amount must be greater than ₹0.")
             return False
 
         balance = user.get_balance()
@@ -38,7 +33,10 @@ class Deposit(Bank):
         balance = balance + self.amount
 
         user.set_balance(balance)
-        print("Deposit Successful")
-        print("Current Balance :", user.get_balance())
+
+        print("\n✅ Deposit Successful!")
+        print(f"💰 Deposited Amount : ₹{self.amount}")
+        print(f"🏦 Available Balance: ₹{user.get_balance()}")
+        print("======================================")
 
         return True

@@ -13,7 +13,7 @@ class Signup(Bank):
 
     def operation(self):
 
-        print("Signup Operation")
+        print("\n========== User Registration ==========")
 
     # ---------- Signup ----------
 
@@ -36,10 +36,11 @@ class Signup(Bank):
 
         if found:
 
-            print("Username Already Exists")
+            print("\n❌ Username already exists.")
+            print("Please choose a different username.")
             return
 
-        name = input("Enter Name : ")
+        name = input("Enter Full Name : ")
 
         try:
 
@@ -47,7 +48,7 @@ class Signup(Bank):
 
         except Exception as msg:
 
-            print(msg)
+            print("\n❌ Invalid Age.", msg)
             return
 
         email = input("Enter Email : ")
@@ -56,11 +57,11 @@ class Signup(Bank):
 
         try:
 
-            balance = int(input("Enter Opening Balance : "))
+            balance = int(input("Enter Opening Balance (₹): "))
 
         except Exception as msg:
 
-            print(msg)
+            print("\n❌ Invalid Opening Balance.", msg)
             return
 
         user = Customer(
@@ -78,4 +79,10 @@ class Signup(Bank):
 
         self.file.save_users(customers)
 
-        print("Signup Successful")
+        print("\n======================================")
+        print("🎉 Account Created Successfully!")
+        print(f"👤 Welcome, {name}")
+        print(f"🆔 Username : {username}")
+        print(f"💰 Opening Balance : ₹{balance}")
+        print("🏦 Thank you for choosing Python Bank.")
+        print("======================================")
