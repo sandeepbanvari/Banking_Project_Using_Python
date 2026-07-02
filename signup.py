@@ -1,3 +1,5 @@
+import re
+
 from bank import Bank
 from customers import Customer
 from filehandler import FileHandler
@@ -24,6 +26,13 @@ class Signup(Bank):
         customers = self.file.load_users()
 
         username = input("Enter Username : ").strip().lower()
+        
+        if not re.fullmatch(r"^[A-Za-z0-9_]{3,15}$", username):
+
+            print("\n❌ Invalid Username.")
+            print("Username must be alphanumeric and between 3 and 15 characters long.")
+            return
+            
 
         found = False
 
@@ -41,6 +50,11 @@ class Signup(Bank):
             return
 
         name = input("Enter Full Name : ")
+        
+        if not re.fullmatch(r"^[A-Za-z ]{3,30}$", name):
+            print("\n❌ Invalid Name.")
+            print('Name should contain only alphabets and spaces.')
+            return
 
         try:
 
@@ -51,9 +65,17 @@ class Signup(Bank):
             print("\n❌ Invalid Age.", msg)
             return
 
-        email = input("Enter Email : ")
+        email = input("Enter your email : ")
+        
+        if not re.fullmatch(r'^[A-Za-z0-9._%-]{2,}+@[\w]{2,}\.[\w]{2,}$', email):
+            print('\n❌ Invalid email.')
+            return
 
         password = input("Enter Password : ")
+        
+        if not re.fullmatch(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$', password):
+            print('\n❌ Invalid Password.')
+            return
 
         try:
 
