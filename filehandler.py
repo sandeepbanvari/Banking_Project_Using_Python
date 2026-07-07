@@ -6,9 +6,15 @@ from customers import Customer
 class FileHandler:
 
     def __init__(self):
+        
+        self.folder = "C:\\Users\\SANDEEP BANVARI\\OneDrive\\Desktop"
+        
+        if not os.path.exists(self.folder):
 
-        self.user_file = "users.csv"
-        self.transaction_file = "transactions.csv"
+            os.mkdirs(self.folder)
+
+        self.user_file = self.folder + "\\users.csv"
+        self.transaction_file = self.folder + "\\transactions.csv"
 
         if not os.path.exists(self.user_file):
 
